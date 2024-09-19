@@ -1,0 +1,132 @@
+/* General Styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #343434;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+h1 {
+    color: white;
+}
+
+#room-link {
+    color: white;
+}
+
+/* Landing Page Styles */
+.container {
+    text-align: center;
+    padding: 20px;
+}
+
+#room-link {
+    margin-top: 10px;
+}
+
+/* Chatroom Styles */
+.chat-container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#user-info {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+#avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    margin-right: 10px;
+}
+
+#chat-box {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+#send-btn, #image-input {
+    margin-right: 5px;
+}
+
+#username {
+    font-weight: bold;
+}
+
+/* Chat bubbles */
+.chat-container {
+    width: 400px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+#chat-box {
+    height: 300px;
+    overflow-y: scroll;
+    background-color: #f9f9f9;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+}
+
+/* Style for chat bubbles */
+.message {
+    display: inline-block;
+    max-width: 70%;
+    padding: 10px;
+    border-radius: 10px;
+    margin: 5px 0;
+    clear: both;
+}
+
+/* Right-aligned chat bubble for the current user's messages */
+.message-right {
+    background-color: #6458ff;
+    color: white;
+    align-self: flex-end;
+    float: right;
+    border-top-right-radius: 0;
+    text-align: right;
+}
+
+/* Left-aligned chat bubble for other users' messages */
+.message-left {
+    background-color: #ebe8e5;
+    align-self: flex-start;
+    float: left;
+    border-top-left-radius: 0;
+    text-align: left;
+}
+
+#message-input {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+#send-btn, #image-input {
+    margin-right: 5px;
+}
+
+/* Clear floats after chat bubbles */
+#chat-box::after {
+    content: "";
+    clear: both;
+    display: table;
+}

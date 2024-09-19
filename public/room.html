@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatroom</title>
+    <link rel="stylesheet" href="/css/styles.css">
+</head>
+<body>
+    <div class="chat-container">
+        <div id="user-info">
+            <img id="avatar" src="" alt="avatar">
+            <p id="username"></p>
+        </div>
+        <div id="chat-box"></div>
+        <input type="text" id="message-input" placeholder="Type your message">
+        <button id="send-btn">Send</button>
+        <input type="file" id="image-input" accept="image/*">
+    </div>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/room.js"></script>
+</body>
+</html>
