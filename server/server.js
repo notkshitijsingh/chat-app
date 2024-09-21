@@ -27,24 +27,32 @@ app.get('/chatroom/:roomId', (req, res) => {
 
 // WebSocket logic
 io.on('connection', (socket) => {
-    // Random name and avatar assignment
-    const names = fs.readFileSync('names.txt', 'utf-8').split('\n');
-    const avatars = fs.readdirSync(path.join(__dirname, '..', 'assets', 'avatars'));
+    // Join room based on roomId passed from the client
+    socket.on('join-room', (roomId) => {
+        socket.join(roomId);
 
-    const randomName = names[Math.floor(Math.random() * names.length)];
-    const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
+        // Random name and avatar assignment
+        const names = fs.readFileSync('names.txt', 'utf-8').split('\n');
+        const avatars = fs.readdirSync(path.join(__dirname, '..', 'assets', 'avatars'));
 
-    // Emit user info with the correct avatar path
-    socket.emit('user-info', { name: randomName, avatar: `/assets/avatars/${randomAvatar}` });
+        const randomName = names[Math.floor(Math.random() * names.length)];
+        const randomAvatar = avatars[Math.floor(Math.random() * avatars.length)];
 
-    // Handle chat messages
-    socket.on('chat-message', (message) => {
-        io.emit('chat-message', message);
-    });
+        // Emit user info to the current client
+        socket.emit('user-info', { name: randomName, avatar: `/assets/avatars/${randomAvatar}` });
 
-    // Handle image upload
-    socket.on('image-upload', (imageData) => {
-        io.emit('image-upload', imageData);
+        // Notify all users in the room that someone has joined
+        socket.to(roomId).emit('notify-enter', { name: randomName });
+
+        // Handle chat messages in a specific room
+        socket.on('chat-message', (message) => {
+            io.to(roomId).emit('chat-message', message);
+        });
+
+        // Handle image uploads in a specific room
+        socket.on('image-upload', (imageData) => {
+            io.to(roomId).emit('image-upload', imageData);
+        });
     });
 });
 
